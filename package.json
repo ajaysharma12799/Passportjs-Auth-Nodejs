@@ -1,0 +1,11 @@
+{
+  "name": "passportjs-auth-nodejs",
+  "version": "1.0.0",
+  "description": "Passportjs Authencation using Nodejs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ajay Sharma",
+  "license": "ISC"
+}
