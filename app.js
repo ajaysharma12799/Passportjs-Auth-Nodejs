@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const homeRoutes = require('./routes/homeRoute');
+const registerRoutes = require('./routes/registerRoute');
 
 const app = express();
 const PORT = 3200;
@@ -14,6 +15,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
 app.use(homeRoutes);
+app.use(registerRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server Running at ${PORT}`);
