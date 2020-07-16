@@ -2,7 +2,9 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
+const flash = require('connect-flash');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 
 const indexRoutes = require('./routes/indexRoute');
 const loginRoutes = require('./routes/loginRoute');
@@ -16,6 +18,21 @@ app.set('views', 'views');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: false}));
+
+app.use(session({ // EXPRESS SESSION MIDDLEWARE
+    secret: process.env.SECRET,
+    resave: true,
+    saveUninitialized: true
+}))
+
+app.use(flash()); // CONNECT-FLASH
+
+// GLOBAL VARS
+app.use( (req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    next();
+} )
 
 app.use('/', indexRoutes);
 app.use('/user', loginRoutes);
