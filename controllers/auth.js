@@ -69,6 +69,11 @@ exports.signup = async (req, res, next) => {
     }
 }
 
-exports.signin = (req, res, next) => {
-    
+exports.isAuthenticated = (req, res, next) => {
+    if(req.isAuthenticated()) { // IF USER IS AUTHENCATED THEN WE CONTINUE
+        return next();
+    }
+
+    req.flash('error_msg', 'Please Login to view this resourse');
+    res.redirect('/user/login');
 }

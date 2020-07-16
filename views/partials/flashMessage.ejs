@@ -29,3 +29,13 @@
       </button>
     </div>
 <% } %>
+
+<!-- SHOW MESSAGE WHEN WE TRY TO LOGIN USING PASSPORT -->
+<% if(error != ''){ %>
+  <div class=" container alert alert-danger alert-dismissible fade show" role="alert">
+    <%= error %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% } %>

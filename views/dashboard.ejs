@@ -1,0 +1,11 @@
+<%- include('./partials/header.ejs') %>
+
+<div class="container mx-auto my-auto">
+    <div class="row">
+        <div class="col-4"> <%= user.name %> </div> 
+        <div class="col-4"> <%= user.email %> </div>
+        <div class="col-4"> <a href="/logout" class="btn btn-secondary"> Logout </a> </div>
+    </div>
+</div>
+
+<%- include('./partials/footer.ejs') %>

@@ -2,6 +2,7 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport');
 const flash = require('connect-flash');
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -12,6 +13,9 @@ const registerRoutes = require('./routes/registerRoute');
 
 const app = express();
 const PORT = 3200;
+
+// PASSPORT CONFIG
+require('./config/passport')(passport);
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -25,12 +29,17 @@ app.use(session({ // EXPRESS SESSION MIDDLEWARE
     saveUninitialized: true
 }))
 
+// PASSPORT MIDDLEWARE
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(flash()); // CONNECT-FLASH
 
 // GLOBAL VARS
 app.use( (req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
     next();
 } )
 
